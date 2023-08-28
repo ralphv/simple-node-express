@@ -1,4 +1,3 @@
-
 ## Purpose
 
 Use this simple image in your quick projects to create containers that respond to any path/url/method with some simple output.
