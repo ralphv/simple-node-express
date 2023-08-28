@@ -14,4 +14,4 @@ Use this simple image in your quick projects to create containers that respond t
 
 ### To run
 
-`docker run -it --rm -p 8080:8080 -e PORT='8080' -e SERVICE_NAME='from-docker-run' local/simple-node-express:latest`
+`docker run -it --init --rm -p 8080:8080 -e PORT='8080' -e SERVICE_NAME='from-docker-run' --name simple-node-express local/simple-node-express:latest`
