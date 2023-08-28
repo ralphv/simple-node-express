@@ -5,7 +5,9 @@ Use this simple image in your quick projects to create containers that respond t
 
 ### To build locally
 
-`docker build --no-cache . -t local/simple-node-express:latest`
+```shell
+docker build --no-cache . -t ralphv/simple-node-express:latest`
+```
 
 ### Environment variables:
 
@@ -14,9 +16,14 @@ Use this simple image in your quick projects to create containers that respond t
 
 ### To run
 
-`docker run -it --init --rm \
+```shell
+docker run -it --init --rm \
 -p 8080:8080 \
 -e PORT='8080' \
 -e SERVICE_NAME='from-docker-run' \
 --name simple-node-express \
-local/simple-node-express:latest`
+ralphv/simple-node-express:latest
+```
+
+### To push
+docker push ralphv/simple-node-express:latest
