@@ -1,6 +1,12 @@
 ## Purpose
 
 Use this simple image in your quick projects to create containers that respond to any path/url/method with some simple output.
+You can find this at [https://hub.docker.com/r/ralphv/simple-node-express](https://hub.docker.com/r/ralphv/simple-node-express)
+
+To pull built image:
+```shell
+docker pull ralphv/simple-node-express
+```
 
 ### To build locally
 
