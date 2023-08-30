@@ -30,29 +30,19 @@ docker run -it --init --rm \
 ralphv/simple-node-express:latest
 ```
 
-### To build with buildx
+### To build with buildx for multiple platforms using Windows/Raspberry pi 4 
 
 * Make sure raspberry pi doesn't need sudo [https://github.com/sindresorhus/guides/blob/main/docker-without-sudo.md](https://github.com/sindresorhus/guides/blob/main/docker-without-sudo.md)
-* 
+* Setup root access through ssh if the above doesn't work, either way the next command should work
+* This command should work `docker -H ssh://USER@HOST ps`
+* Run this command `docker buildx create --name localremote_builder --node localremote_builder0 --platform linux/arm64/v8,linux/amd64,linux/s390x --driver-opt env.BUILDKIT_STEP_LOG_MAX_SIZE=10000000 --driver-opt env.BUILDKIT_STEP_LOG_MAX_SPEED=10000000`
+* Run this command `docker buildx create --name localremote_builder --append --node pi --platform linux/arm/v7,linux/arm/v8 ssh://USER@HOST --driver-opt env.BUILDKIT_STEP_LOG_MAX_SIZE=10000000 --driver-opt env.BUILDKIT_STEP_LOG_MAX_SPEED=10000000`
+* Confirm with `docker buildx ls`
+* Use the context `docker buildx use localremote_builder`
 
+To build
 ```shell
-docker push ralphv/simple-node-express:latest
-```
-
-To build on Windows
-```shell
-docker buildx build \
---push \
---platform linux/arm64/v8,linux/amd64,linux/s390x \
---tag ralphv/simple-node-express:latest .
-```
-
-To build on raspberry pi 4
-```shell
-sudo docker pull ralphv/simple-node-express:latest --platform linux/arm64/v8
-sudo docker pull ralphv/simple-node-express:latest --platform linux/amd64
-sudo docker pull ralphv/simple-node-express:latest --platform linux/s390x
-sudo docker buildx build --push --platform linux/arm64/v8,linux/amd64,linux/s390x,linux/arm/v7,linux/arm/v8 --tag ralphv/simple-node-express:latest .
+docker buildx build --push --platform linux/arm64/v8,linux/amd64,linux/s390x,linux/arm/v7,linux/arm/v8 --tag ralphv/simple-node-express:latest .
 ```
 
 To fix raspberry pi 4 problems building
