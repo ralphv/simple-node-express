@@ -47,3 +47,6 @@ To build on raspberry pi 4
 ```shell
 sudo docker buildx build --push --platform linux/arm/v7,linux/arm/v8 --tag ralphv/simple-node-express:latest .
 ```
+
+To fix raspberry pi 4 problems building
+https://blog.samcater.com/fix-workaround-rpi4-docker-libseccomp2-docker-20/
