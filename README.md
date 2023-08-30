@@ -31,4 +31,19 @@ ralphv/simple-node-express:latest
 ```
 
 ### To push
+```shell
 docker push ralphv/simple-node-express:latest
+```
+
+To build on Windows
+```shell
+docker buildx build \
+--push \
+--platform linux/arm64/v8,linux/amd64,linux/s390x \
+--tag ralphv/simple-node-express:latest .
+```
+
+To build on raspberry pi 4
+```shell
+sudo docker buildx build --push --platform linux/arm/v7,linux/arm/v8 --tag ralphv/simple-node-express:latest .
+```
