@@ -30,7 +30,11 @@ docker run -it --init --rm \
 ralphv/simple-node-express:latest
 ```
 
-### To push
+### To build with buildx
+
+* Make sure raspberry pi doesn't need sudo [https://github.com/sindresorhus/guides/blob/main/docker-without-sudo.md](https://github.com/sindresorhus/guides/blob/main/docker-without-sudo.md)
+* 
+
 ```shell
 docker push ralphv/simple-node-express:latest
 ```
@@ -45,7 +49,10 @@ docker buildx build \
 
 To build on raspberry pi 4
 ```shell
-sudo docker buildx build --push --platform linux/arm/v7,linux/arm/v8 --tag ralphv/simple-node-express:latest .
+sudo docker pull ralphv/simple-node-express:latest --platform linux/arm64/v8
+sudo docker pull ralphv/simple-node-express:latest --platform linux/amd64
+sudo docker pull ralphv/simple-node-express:latest --platform linux/s390x
+sudo docker buildx build --push --platform linux/arm64/v8,linux/amd64,linux/s390x,linux/arm/v7,linux/arm/v8 --tag ralphv/simple-node-express:latest .
 ```
 
 To fix raspberry pi 4 problems building
